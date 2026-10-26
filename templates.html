@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模板库｜分镜提示词工具站 v1</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <span class="logo">分镜提示词工具站 v1</span>
+  <nav>
+    <a href="index.html">分镜生成器</a>
+    <a href="generator.html">点选生成</a>
+    <a href="decompose.html">反向拆解</a>
+    <a class="on" href="templates.html">模板库</a>
+  </nav>
+</header>
+<div class="wrap">
+  <h1>模板库</h1>
+  <p class="lead">按故事结构、单镜、风格整理的现成模板条目，点“复制模板”就能拿去改着用；点“套用”可直接跳转：故事结构与风格类跳到分镜页并提示，单镜类把词选进点选页词语树。以后这里也是本站的 SEO 内容页。</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">故事结构模板</h2>
+
+    <h3>产品展示</h3>
+    <p>模板：开箱全景 → 产品细节特写 → 使用过程跟拍 → 使用前后对比 → 结尾定格产品与一句卖点旁白。</p>
+    <p class="muted">适用说明：适合带货、种草、电商产品视频，重点在细节特写和前后对比。</p>
+    <button class="small green" onclick="copyText('开箱全景，产品登场；细节特写，展示材质与做工；使用过程跟拍；使用前后对比；结尾定格产品与一句卖点旁白。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好故事结构，在上方选词、写一句主题即可生成')">套用</button>
+
+    <h3>剧情短片</h3>
+    <p>模板：日常开场 → 出现意外或误会 → 主角做出选择 → 反转揭示真相 → 一句收束旁白定格。</p>
+    <p class="muted">适用说明：适合 1–3 分钟剧情类短视频，反转放在倒数第二镜效果最好。</p>
+    <button class="small green" onclick="copyText('日常开场，交代人物与环境；出现意外或误会；主角做出选择；反转揭示真相；一句收束旁白定格。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好故事结构，在上方选词、写一句主题即可生成')">套用</button>
+
+    <h3>知识讲解</h3>
+    <p>模板：一个生活问题开场 → 手绘/图示拆解原理 → 举一个日常例子 → 常见误区提醒 → 一句话总结。</p>
+    <p class="muted">适用说明：适合科普、教学干货，配手绘知识卡风格效果最好。</p>
+    <button class="small green" onclick="copyText('一个生活问题开场；手绘图示拆解原理；举一个日常例子；常见误区提醒；一句话总结。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好故事结构，在上方选词、写一句主题即可生成')">套用</button>
+
+    <h3>口播</h3>
+    <p>模板：痛点一句话开场 → 讲清 3 个要点（每点一个例子）→ 常见错误提醒 → 结尾号召互动。</p>
+    <p class="muted">适用说明：适合口播、干货分享类账号，结构固定，换主题就能复用。</p>
+    <button class="small green" onclick="copyText('痛点一句话开场；讲清 3 个要点，每点一个例子；常见错误提醒；结尾号召互动。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好故事结构，在上方选词、写一句主题即可生成')">套用</button>
+
+    <h3>风景混剪</h3>
+    <p>模板：航拍大景开场 → 四季/昼夜切换 → 人物点缀其中 → 空镜转场 → 日落或星空收尾。</p>
+    <p class="muted">适用说明：适合旅行、城市宣传类混剪，音乐节奏比旁白更重要。</p>
+    <button class="small green" onclick="copyText('航拍大景开场；四季或昼夜切换；人物点缀其中；空镜转场；日落或星空收尾。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好故事结构，在上方选词、写一句主题即可生成')">套用</button>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">单镜模板</h2>
+
+    <h3>开场</h3>
+    <p>模板：全景固定机位或航拍俯瞰，交代环境与时间，淡入。</p>
+    <p class="muted">适用说明：任何长视频的第一镜，先立住“这是在哪、什么时候”。</p>
+    <button class="small green" onclick="copyText('全景固定机位，交代环境与时间，淡入。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToPick([{cat:'shot',word:'远景'},{cat:'camera',word:'推'}], 'shot')">套用</button>
+
+    <h3>转场</h3>
+    <p>模板：用一个相似形状或动作衔接前后两镜，例如推门 → 下一场景的门打开。</p>
+    <p class="muted">适用说明：两镜之间不想硬切时用，动作衔接比纯叠化更顺。</p>
+    <button class="small green" onclick="copyText('用一个相似形状或动作衔接前后两镜，例如推门后切到下一场景的门打开。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToPick([{cat:'lens',word:'空镜'},{cat:'camera',word:'跳切'}], 'lens')">套用</button>
+
+    <h3>特写</h3>
+    <p>模板：特写镜头，缓慢推近，突出一个关键细节或人物表情变化。</p>
+    <p class="muted">适用说明：转折、高潮、情绪点都适合给一个特写，信息密度最高的一镜。</p>
+    <button class="small green" onclick="copyText('特写镜头，缓慢推近，突出一个关键细节或人物表情变化。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToPick([{cat:'shot',word:'特写'},{cat:'lens',word:'微距'}], 'shot')">套用</button>
+
+    <h3>全景</h3>
+    <p>模板：全景或远景，固定机位或缓慢横移，展示空间关系与人物位置。</p>
+    <p class="muted">适用说明：段落切换、场景交代时用，让观众重新定位。</p>
+    <button class="small green" onclick="copyText('全景或远景，固定机位或缓慢横移，展示空间关系与人物位置。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToPick([{cat:'shot',word:'全景'}], 'shot')">套用</button>
+
+    <h3>结尾</h3>
+    <p>模板：回到开场画面做呼应，定格一帧，淡出，加一句收束旁白。</p>
+    <p class="muted">适用说明：收束全片用，呼应开场会让片子显得完整。</p>
+    <button class="small green" onclick="copyText('回到开场画面做呼应，定格一帧，淡出，加一句收束旁白。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToPick([{cat:'camera',word:'拉'},{cat:'lens',word:'空镜'}], 'camera')">套用</button>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">风格预设</h2>
+
+    <h3>手绘知识卡风</h3>
+    <p>模板：米色纸面底色，黑色手绘线条，荧光黄点缀重点，画面干净、字迹清晰。</p>
+    <p class="muted">适用说明：知识讲解、科普类首选，重点信息用荧光黄标出来。</p>
+    <button class="small green" onclick="copyText('手绘知识卡风格，米色纸面底色，黑色手绘线条，荧光黄点缀重点，画面干净、字迹清晰。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好风格，在上方选词、写一句主题即可生成')">套用</button>
+
+    <h3>像素风</h3>
+    <p>模板：颗粒感像素画面，色彩鲜明，复古游戏感，动作简单夸张。</p>
+    <p class="muted">适用说明：搞笑、游戏、怀旧题材，动作写简单点更稳。</p>
+    <button class="small green" onclick="copyText('像素风，颗粒感像素画面，色彩鲜明，复古游戏感，动作简单夸张。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好风格，在上方选词、写一句主题即可生成')">套用</button>
+
+    <h3>电影感</h3>
+    <p>模板：电影级光影，浅景深，胶片质感，16:9 宽画幅，运镜克制缓慢。</p>
+    <p class="muted">适用说明：剧情、品牌广告类首选，运镜宁慢勿快。</p>
+    <button class="small green" onclick="copyText('电影感，电影级光影，浅景深，胶片质感，16:9 宽画幅，运镜克制缓慢。','模板已复制')">复制模板</button>
+    <button class="small" onclick="applyTemplateToBoard('已选好风格，在上方选词、写一句主题即可生成')">套用</button>
+  </div>
+
+  <div class="footer" id="footer"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script src="wordtree.js"></script>
+<script>
+/* 模板套用（以预览版为准）：分镜类（故事结构、风格）只跳转＋提示、不加词；
+   点选类单镜才往点选树加词并定位轮播到首词类目。 */
+function applyTemplateToBoard(note) {
+  try { sessionStorage.setItem("prompttool_tpl_note", note); } catch (e) {}
+  location.href = "index.html";
+}
+function applyTemplateToPick(words, firstCatId) {
+  try {
+    var o = JSON.parse(localStorage.getItem("prompttool_tree_gen") || "{}");
+    var sel = o.selected || [];
+    words.forEach(function (w) {
+      if (!sel.some(function (s) { return s.cat === w.cat && s.word === w.word; })) sel.push(w);
+    });
+    o.selected = sel;
+    localStorage.setItem("prompttool_tree_gen", JSON.stringify(o));
+    var idx = 0;
+    for (var i = 0; i < WORD_TREE.length; i++) if (WORD_TREE[i].id === firstCatId) { idx = i; break; }
+    sessionStorage.setItem("prompttool_deck_index", String(idx));
+    sessionStorage.setItem("prompttool_tpl_note", "已把模板用到的词选进词语树，去点选生成里继续补齐");
+  } catch (e) {}
+  location.href = "generator.html";
+}
+</script>
+</body>
+</html>

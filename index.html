@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长视频分镜生成器｜分镜提示词工具站 v1</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <span class="logo">分镜提示词工具站 v1</span>
+  <nav>
+    <a class="on" href="index.html">分镜生成器</a>
+    <a href="generator.html">点选生成</a>
+    <a href="decompose.html">反向拆解</a>
+    <a href="templates.html">模板库</a>
+  </nav>
+</header>
+<div class="wrap">
+  <h1>长视频分镜生成器</h1>
+  <p class="lead">给一句话主题，再从词语树点几个词，出一张完整分镜表：每镜带画面、运镜、时长、提示词、旁白、转场，再按镜号顺序逐条生成、拼接成片。</p>
+
+  <div class="card lazycard">
+    <h2 style="margin-top:0">懒人模式：一键成片</h2>
+    <p class="muted">只点一个方向，或只输一句话主题，剩下的搭配自动配齐，直接出完整分镜表；生成后仍可手动改词。</p>
+    <label>方向（点一个，再点可取消）</label>
+    <div class="chips" id="lazyDirs"></div>
+    <label for="lazyTheme">或者只输一句话主题（可不填方向）</label>
+    <input type="text" id="lazyTheme" placeholder="例如：雨天小店的一天">
+    <button id="lazyBtn" class="green">一键成片</button>
+    <p class="muted" id="lazyNote"></p>
+  </div>
+
+  <div class="notice"><b>先说清：</b>现在 AI 单次生成只有 5 到 15 秒这个量级（可灵 3.0 单次最长 15 秒、Veo 3.1 单段 8 秒可续接、Seedance 2.5 单镜头 30 秒），长片只能靠分镜拆解＋逐镜生成＋拼接实现，不是丢一句话就出几分钟。Sora 已停服，本站不把它列为目标 AI。</div>
+
+  <div class="selbar">
+    <h3>已选词（点 × 可移除，点词可取消）</h3>
+    <div id="selBox"></div>
+    <button id="clearBtn" class="secondary">清空已选词</button>
+    <div id="recoBox"></div>
+  </div>
+  <div class="card">
+    <label for="treeSearch">跨类目搜索：不用翻卡，一次搜全部类目</label>
+    <input type="text" id="treeSearch" placeholder="例如：雨夜、浪漫、微距">
+    <div id="searchResults"></div>
+    <h3 style="margin-top:14px">常用快捷区：点一下即加入</h3>
+    <div id="quickZone" class="quickzone"></div>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">词语树：左右滑动切换类目，点词拼进分镜</h2>
+    <p class="muted">一段提示词就是由各种东西拼成的：一次只显示一个类目，左右滑动或点下面按钮切换；点词即加入；带 ▸ 的词还能再点开展开关联词。已选元素会自动写进固定锚点，镜头方式、运镜、景别、构图类的词会进每一镜的运镜描述。</p>
+    <div id="treeBox"></div>
+    <p class="muted">已选词会被记住（只存在这台设备的浏览器 localStorage 里），下次打开还在。风格请从词语树的类型里点选，不选默认电影感。已选词栏在滑动时一直固定在上方，不会滑丢。</p>
+  </div>
+
+  <div class="card" id="storyForm">
+    <label for="theme">主题（一句话）</label>
+    <input type="text" id="theme" placeholder="例如：雨天小店的一天">
+    <label for="duration">总时长</label>
+    <select id="duration">
+      <option>30秒</option>
+      <option>1分钟</option>
+      <option selected>3分钟</option>
+      <option>5分钟</option>
+    </select>
+    <label for="hero">主角外貌（可选，不填用默认）</label>
+    <input type="text" id="hero" placeholder="例如：一位穿黄色雨衣的年轻店主">
+    <button id="genBtn">生成分镜表</button>
+  </div>
+
+  <div class="card" id="result" style="display:none">
+    <h2 style="margin-top:0">分镜表</h2>
+    <p id="metaLine" class="muted"></p>
+    <div class="anchorbox" id="anchorBox"></div>
+    <div class="tablewrap" style="margin-top:12px">
+      <table id="shotTable"></table>
+    </div>
+    <div style="margin-top:12px">
+      <button id="copyAllBtn" class="green">一键复制整表</button>
+    </div>
+    <div class="tip">
+      <b>拼接顺序说明：</b>按镜号从 1 到最后一镜，依次把每镜提示词粘贴到 AI 视频工具生成单镜片段（每镜 5–15 秒），全部生成后按镜号顺序拼接成片；相邻两镜可用首尾帧衔接。固定锚点已写进每一镜提示词，帮你锁住主角外貌和画风，防串戏。
+    </div>
+    <h3>去 AI 视频工具生成</h3>
+    <div class="airow" id="aiRow"></div>
+  </div>
+
+  <div class="footer" id="footer"></div>
+</div>
+<button id="fabGen" class="fab" type="button">生成分镜表</button>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script src="wordtree.js"></script>
+<script src="storyboard.js"></script>
+</body>
+</html>

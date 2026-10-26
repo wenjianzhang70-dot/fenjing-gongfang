@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通用点选生成器｜分镜提示词工具站 v1</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <span class="logo">分镜提示词工具站 v1</span>
+  <nav>
+    <a href="index.html">分镜生成器</a>
+    <a class="on" href="generator.html">点选生成</a>
+    <a href="decompose.html">反向拆解</a>
+    <a href="templates.html">模板库</a>
+  </nav>
+</header>
+<div class="wrap">
+  <h1>通用点选生成器</h1>
+  <p class="lead">一段提示词就是由各种东西拼成的：左右滑动切换类目，点词即加入；带 ▸ 的词还能再点开展开关联词。生成后自动复制到剪贴板，再一键跳转目标 AI 使用。</p>
+
+  <div class="selbar">
+    <h3>已选词（点 × 可移除，点词可取消）</h3>
+    <div id="selBox"></div>
+    <button id="clearBtn" class="secondary">清空已选词</button>
+    <div id="recoBox"></div>
+  </div>
+  <div class="card">
+    <label for="treeSearch">跨类目搜索：不用翻卡，一次搜全部类目</label>
+    <input type="text" id="treeSearch" placeholder="例如：雨夜、浪漫、微距">
+    <div id="searchResults"></div>
+    <h3 style="margin-top:14px">常用快捷区：点一下即加入</h3>
+    <div id="quickZone" class="quickzone"></div>
+  </div>
+  <div class="card">
+    <div id="treeBox"></div>
+    <label for="extraInput">补充要求（自己写，选填）</label>
+    <input type="text" id="extraInput" placeholder="例如：不要出现文字">
+    <button id="genBtn2" class="green">生成提示词并自动复制</button>
+    <p class="muted">你的选项会被记住（只存在这台设备的浏览器 localStorage 里），下次打开还在。</p>
+  </div>
+
+  <div class="card" id="genResult" style="display:none">
+    <h2 style="margin-top:0">生成的提示词</h2>
+    <div class="promptbox" id="genOutput"></div>
+    <h3>去 AI 视频工具生成</h3>
+    <div class="airow" id="genAiRow"></div>
+  </div>
+
+  <div class="tip">
+    <b>添加到主屏幕：</b>手机上打开本站后，在浏览器菜单里选“添加到主屏幕”，以后就能像 App 一样从桌面打开，不用每次搜网址。
+  </div>
+
+  <div class="footer" id="footer"></div>
+</div>
+<button id="fabGen2" class="fab" type="button">生成提示词</button>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script src="wordtree.js"></script>
+<script src="generator.js"></script>
+</body>
+</html>
